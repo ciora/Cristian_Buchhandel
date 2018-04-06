@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by cristian on 14.10.2017.
  */
-@XmlRootElement
+
 @Table(name = "Publisher")
 @Entity
 public class Publisher implements Serializable {

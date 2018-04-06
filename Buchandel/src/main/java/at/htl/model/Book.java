@@ -10,7 +10,6 @@ import java.io.Serializable;
 /**
  * Created by cristian on 14.10.2017.
  */
-@XmlRootElement
 @Table(name = "Book")
 @Entity
 public class Book implements Serializable {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+   <title>My Project</title>
+</h:head>
+<h:body>
+
+   <h:form id="form">
+      <p:layout>
+         <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+            West
+         </p:layoutUnit>
+
+         <p:layoutUnit position="center">
+            <p:dataScroller value="#{indexController.books}" var="book" chunkSize="10">
+               <f:facet name="header">
+                  Scroll Down to Load More Cars
+               </f:facet>
+               <h:panelGrid columns="2" columnClasses="logo,detail">
+                  <p:graphicImage name="images/book.jpg" />
+
+                  <p:outputPanel>
+                     <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{book.id}" style="font-weight: bold"/>
+
+                        <h:outputText value="Year:" />
+                        <h:outputText value="#{book.title}" style="font-weight: bold"/>
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{book.publisher}" style="font-weight: bold"/>
+
+                        <p:commandButton value="Anmelden"/>
+                     </h:panelGrid>
+                  </p:outputPanel>
+               </h:panelGrid>
+               <p:separator />
+            </p:dataScroller>
+         </p:layoutUnit>
+      </p:layout>
+   </h:form>
+
+</h:body>
+</html>

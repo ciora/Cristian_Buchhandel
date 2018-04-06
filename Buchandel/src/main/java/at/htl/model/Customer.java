@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * Created by cristian on 14.10.2017.
  */
-@XmlRootElement
 @Table(name = "Customer")
 @Entity
 public class Customer {

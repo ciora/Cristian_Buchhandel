@@ -45,12 +45,42 @@ public class InitBean {
         Book theStory = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
         Book judgementDay = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
         Book jdk = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+        Book theAdventure1 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
+        Book theStory1 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
+        Book judgementDay1 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
+        Book jdk1 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+        Book theStory2 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
+        Book judgementDay2 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
+        Book jdk2 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+        Book theAdventure2 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
+        Book theStory3 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
+        Book judgementDay3 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
+        Book jdk3 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+        Book theAdventure3 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
+        Book theStory4 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
+        Book judgementDay4 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
+        Book jdk4 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+
 
         bookFacade.create(theAdventure);
         bookFacade.create(theStory);
         bookFacade.create(judgementDay);
         bookFacade.create(jdk);
-
+        bookFacade.create(theAdventure1);
+        bookFacade.create(theStory1);
+        bookFacade.create(judgementDay1);
+        bookFacade.create(jdk1);
+        bookFacade.create(theAdventure2);
+        bookFacade.create(theStory2);
+        bookFacade.create(judgementDay2);
+        bookFacade.create(jdk2);
+        bookFacade.create(theAdventure3);
+        bookFacade.create(theStory3);
+        bookFacade.create(judgementDay3);
+        bookFacade.create(jdk3);
+        bookFacade.create(theStory4);
+        bookFacade.create(judgementDay4);
+        bookFacade.create(jdk4);
         List<Book> bookList = new LinkedList<Book>();
         bookList.add(theAdventure);
         bookList.add(theStory);
