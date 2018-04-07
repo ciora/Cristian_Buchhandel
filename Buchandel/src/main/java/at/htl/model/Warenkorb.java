@@ -12,6 +12,8 @@ public class Warenkorb {
     @JoinColumn(name = "book")
     private Book book;
 
+    private int amount;
+
     public Warenkorb() {
     }
 
@@ -29,5 +31,13 @@ public class Warenkorb {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

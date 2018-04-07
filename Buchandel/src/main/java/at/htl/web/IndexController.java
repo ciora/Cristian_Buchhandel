@@ -7,6 +7,7 @@ import at.htl.model.Book;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Model;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Named
-@ViewScoped
+@ApplicationScoped
 public class IndexController implements Serializable {
 
     @Inject
@@ -28,13 +29,18 @@ public class IndexController implements Serializable {
     @Inject
     CustomerFacade customerFacade;
 
+
     List<Book> books;
 
     Book selectedBook = new Book();
 
     Book actBook = new Book();
 
+    List<Book> warenKorb = new LinkedList<Book>();
+
     List<String> genres = new LinkedList<String>();
+
+    List<WarenKorbObject> warenKorbObjectList = new LinkedList<WarenKorbObject>();
     public IndexController() {
 
     }
@@ -74,5 +80,60 @@ public class IndexController implements Serializable {
 
     public void setActBook(Book actBook) {
         this.actBook = actBook;
+    }
+
+    public List<Book> getWarenKorb() {
+        return warenKorb;
+    }
+
+    public void setWarenKorb(List<Book> warenKorb) {
+        this.warenKorb = warenKorb;
+    }
+
+    public List<WarenKorbObject> getWarenKorbObjectList() {
+        return warenKorbObjectList;
+    }
+
+    public void setWarenKorbObjectList(List<WarenKorbObject> warenKorbObjectList) {
+        this.warenKorbObjectList = warenKorbObjectList;
+    }
+
+    public void addBookToWarenKorb(Book toAddBook){
+        boolean firstTimeRegister= true;
+        for (WarenKorbObject warenKorbObject:warenKorbObjectList
+             ) {
+            if(warenKorbObject.getBook().getTitle().equals(toAddBook.getTitle())){
+                warenKorbObject.setAmount(warenKorbObject.amount + 1);
+                firstTimeRegister = false;
+            }
+        }
+        if(firstTimeRegister ==true){
+            warenKorbObjectList.add(new WarenKorbObject(toAddBook,1));
+        }
+
+    }
+
+    public  void  updateWarenKorbBookAmount(WarenKorbObject actWarenKorbItem,String operation){
+        for (WarenKorbObject warenKorbObject:warenKorbObjectList
+             ) {
+            if(actWarenKorbItem.getBook().getTitle().equals(warenKorbObject.getBook().getTitle())){
+                if(operation.equals("plus")){
+                    warenKorbObject.setAmount(warenKorbObject.getAmount() + 1);
+                }
+                else{
+                    int amountAfterDecrease = warenKorbObject.getAmount() - 1;
+                    if(amountAfterDecrease <= 0){
+                        warenKorbObjectList.remove(warenKorbObject);
+                    }
+                    else {
+                        warenKorbObject.setAmount(warenKorbObject.getAmount() - 1);
+                    }
+                }
+
+            }
+        }
+    }
+    public  void  deleteWarenKorbItem(WarenKorbObject actWarenKorbItem){
+        warenKorbObjectList.remove(actWarenKorbItem);
     }
 }

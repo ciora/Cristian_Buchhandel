@@ -12,6 +12,7 @@
 <h:body>
 
    <h:form id="form">
+       <h:button outcome="warenkorb.xhtml" value="Warenkorb" />
       <p:layout>
          <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
             West
@@ -34,11 +35,14 @@
                         <h:outputText value="#{book.title}" style="font-weight: bold"/>
 
                         <h:outputText value="Color:" />
-                        <h:outputText value="#{book.publisher}" style="font-weight: bold"/>
+                        <h:outputText value="#{book.publisher.publisherName}" style="font-weight: bold"/>
 
                         <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()" icon="ui-icon-search" title="View">
                            <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}" />
                         </p:commandButton>
+                         <p:commandButton value="Hinzufügen zum Warenkorb" styleClass="ui-priority-primary" actionListener="#{indexController.addBookToWarenKorb(book)}">
+                             <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
+                         </p:commandButton>
                      </h:panelGrid>
                   </p:outputPanel>
                </h:panelGrid>
@@ -51,14 +55,11 @@
          <p:outputPanel id="bookDetail" style="text-align:center">
                  <p:graphicImage name="images/book.jpg" />
              <p:panelGrid columns="2">
-               <h:outputText value="Id: "/>
-               <h:outputText value="#{indexController.actBook.id}"/>
-
                <h:outputText value="Titel"/>
                <h:outputText value="#{indexController.actBook.title}"/>
 
                <h:outputText value="Location"/>
-               <h:outputText value="#{indexController.actBook.publisher}"/>
+               <h:outputText value="#{indexController.actBook.publisher.publisherName}"/>
             </p:panelGrid>
          </p:outputPanel>
       </p:dialog>
