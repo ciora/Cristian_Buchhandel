@@ -26,7 +26,10 @@ public class Book implements Serializable {
     @Size(min=0,max=255)
     private String autor;
     private double price;
-
+    private int pages;
+    private String language;
+    private String summary;
+    private String genre;
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
@@ -42,12 +45,33 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String title, String ISBN, String autor, double price, Publisher publisher) {
+    public Book(String title, String ISBN, String autor, double price, Publisher publisher,int pages, String language, String summary,String genre) {
         this.title = title;
         this.ISBN = ISBN;
         this.autor = autor;
         this.price = price;
         this.publisher = publisher;
+        this.pages = pages;
+        this.language = language;
+        this.summary = summary;
+        this.genre = genre;
+
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        language = language;
     }
 
     public Long getId() {
@@ -104,5 +128,21 @@ public class Book implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

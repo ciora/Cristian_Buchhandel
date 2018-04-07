@@ -7,63 +7,89 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-   <title>My Project</title>
+    <title>My Project</title>
 </h:head>
 <h:body>
 
-   <h:form id="form">
-       <h:button outcome="warenkorb.xhtml" value="Warenkorb" />
-      <p:layout>
-         <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
-            West
-         </p:layoutUnit>
+    <h:form id="form">
+        <h:button outcome="warenkorb.xhtml" value="Warenkorb" styleClass="ui-priority-primary"/>
 
-         <p:layoutUnit position="center">
-            <p:dataScroller value="#{indexController.books}" var="book" chunkSize="10">
-               <f:facet name="header">
-                  Scroll Down to Load More Cars
-               </f:facet>
-               <h:panelGrid columns="2" columnClasses="logo,detail">
-                  <p:graphicImage name="images/book.jpg" />
+        <p:layout>
+            <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+                West
+            </p:layoutUnit>
 
-                  <p:outputPanel>
-                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Id:" />
-                        <h:outputText value="#{book.id}" style="font-weight: bold"/>
+            <p:layoutUnit position="center">
+                <p:dataScroller value="#{indexController.books}" var="book" chunkSize="10">
+                    <f:facet name="header">
+                        Scroll Down to Load More Cars
+                    </f:facet>
+                    <h:panelGrid columns="2" columnClasses="logo,detail">
+                        <p:graphicImage name="images/book.jpg"/>
 
-                        <h:outputText value="Year:" />
-                        <h:outputText value="#{book.title}" style="font-weight: bold"/>
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Title:"/>
+                                <h:outputText value="#{book.title}" style="font-weight: bold"/>
 
-                        <h:outputText value="Color:" />
-                        <h:outputText value="#{book.publisher.publisherName}" style="font-weight: bold"/>
+                                <h:outputText value="ISBN:"/>
+                                <h:outputText value="#{book.ISBN}" style="font-weight: bold"/>
 
-                        <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()" icon="ui-icon-search" title="View">
-                           <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}" />
-                        </p:commandButton>
-                         <p:commandButton value="Hinzufügen zum Warenkorb" styleClass="ui-priority-primary" actionListener="#{indexController.addBookToWarenKorb(book)}">
-                             <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
-                         </p:commandButton>
-                     </h:panelGrid>
-                  </p:outputPanel>
-               </h:panelGrid>
-               <p:separator />
-            </p:dataScroller>
-         </p:layoutUnit>
-      </p:layout>
+                                <h:outputText value="Pages:"/>
+                                <h:outputText value="#{book.pages}" style="font-weight: bold"/>
 
-      <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-         <p:outputPanel id="bookDetail" style="text-align:center">
-                 <p:graphicImage name="images/book.jpg" />
-             <p:panelGrid columns="2">
-               <h:outputText value="Titel"/>
-               <h:outputText value="#{indexController.actBook.title}"/>
+                                <h:outputText value="Publisher:"/>
+                                <h:outputText value="#{book.publisher.publisherName}" style="font-weight: bold"/>
 
-               <h:outputText value="Location"/>
-               <h:outputText value="#{indexController.actBook.publisher.publisherName}"/>
-            </p:panelGrid>
-         </p:outputPanel>
-      </p:dialog>
-   </h:form>
+                                <h:outputText value="Language:" />
+                                <h:outputText value="#{book.language}" style="font-weight: bold"/>
+
+
+                                <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()"
+                                                 icon="ui-icon-search" title="View">
+                                    <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Hinzufügen zum Warenkorb" styleClass="ui-priority-primary"
+                                                 actionListener="#{indexController.addBookToWarenKorb(book)}">
+                                    <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                    <p:separator/>
+                </p:dataScroller>
+            </p:layoutUnit>
+        </p:layout>
+
+        <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade"
+                  resizable="false">
+            <p:outputPanel id="bookDetail" style="text-align:left">
+                <p:graphicImage name="images/book.jpg"/>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Title:"/>
+                    <h:outputText value="#{indexController.actBook.title}" style="font-weight: bold"/>
+
+                    <h:outputText value="ISBN:"/>
+                    <h:outputText value="#{indexController.actBook.ISBN}" style="font-weight: bold"/>
+
+                    <h:outputText value="Pages:"/>
+                    <h:outputText value="#{indexController.actBook.pages}" style="font-weight: bold"/>
+
+                    <h:outputText value="Publisher:"/>
+                    <h:outputText value="#{indexController.actBook.publisher.publisherName}" style="font-weight: bold"/>
+
+                    <h:outputText value="Language:" />
+                    <h:outputText value="#{indexController.actBook.language}" style="font-weight: bold"/>
+
+                    <h:outputText value="Summary:" />
+                    <h:outputText value="#{indexController.actBook.genre}" style="font-weight: bold"/>
+
+                    <h:outputText value="Summary:" />
+                    <h:outputText value="#{indexController.actBook.summary}" style="font-weight: bold"/>
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
 
 </h:body>
 </html>

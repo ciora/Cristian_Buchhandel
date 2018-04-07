@@ -13,6 +13,7 @@
    <h1 class="ui-widget">Hello World!</h1>
 
    <h:form id="form">
+      <h:button outcome="index.xhtml" value="Home" styleClass="ui-priority-primary"/>
       <p:dataScroller value="#{indexController.warenKorbObjectList}" var="warenKorbItem" chunkSize="10">
          <f:facet name="header">
             Scroll Down to Load More Cars

@@ -40,26 +40,28 @@ public class InitBean {
         publisherFacade.create(goodPublisher);
         publisherFacade.create(mediumPublisher);
         publisherFacade.create(badPublisher);
-
-        Book theAdventure = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
-        Book theStory = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
-        Book judgementDay = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
-        Book jdk = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
-        Book theAdventure1 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
-        Book theStory1 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
-        Book judgementDay1 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
-        Book jdk1 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
-        Book theStory2 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
-        Book judgementDay2 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
-        Book jdk2 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
-        Book theAdventure2 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
-        Book theStory3 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
-        Book judgementDay3 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
-        Book jdk3 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
-        Book theAdventure3 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher);
-        Book theStory4 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher);
-        Book judgementDay4 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher);
-        Book jdk4 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher);
+        String summary = "This Field should contain a short summary about the book. Sadly it is not available at the moment. " +
+                "In the near future this problem will be solved " +
+                "so that you can enjoy the service of this bookshop to the fullest.";
+        Book theAdventure = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher,153,"German",summary,"Fantasy");
+        Book theStory = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher,812,"German",summary,"Sci-Fi");
+        Book judgementDay = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher,456,"English",summary,"History");
+        Book jdk = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher,124,"German",summary,"Biography");
+        Book theAdventure1 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher,345,"German",summary,"Sci-Fi");
+        Book theStory1 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher,153,"German",summary,"Fantasy");
+        Book judgementDay1 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher,434,"English",summary,"History");
+        Book jdk1 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher,371,"German",summary,"Biography");
+        Book theStory2 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher,153,"German",summary,"Fantasy");
+        Book judgementDay2 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher,456,"English",summary,"Fantasy");
+        Book jdk2 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher,947,"German",summary,"History");
+        Book theAdventure2 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher,156,"German",summary,"Biography");
+        Book theStory3 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher,153,"German",summary,"Fantasy");
+        Book judgementDay3 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher,678,"English",summary,"Fantasy");
+        Book jdk3 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher,354,"German",summary,"Fantasy");
+        Book theAdventure3 = new Book("The Adventure of The Miniprojekt","111111","Me",11.11,goodPublisher,478,"English",summary,"Sci-Fi");
+        Book theStory4 = new Book("NVS-The Story","222222","AlsoMe",22.22,mediumPublisher,213,"German",summary,"Fantasy");
+        Book judgementDay4 = new Book("SYP - The Judgementday","333333","WhoeElseThanMe",33.33,badPublisher,821,"English",summary,"History");
+        Book jdk4 = new Book("JDK - Judgement Day Kickoff", "444444", "HmmmmMaybeMe",44.44, badPublisher,234,"German",summary,"Sci-Fi");
 
 
         bookFacade.create(theAdventure);
