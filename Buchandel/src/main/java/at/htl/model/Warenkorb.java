@@ -1,21 +1,18 @@
 package at.htl.model;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
 
-@Entity
-public class BookPurchases {
+public class Warenkorb {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "book")
     private Book book;
 
-    public BookPurchases() {
+    public Warenkorb() {
     }
 
     public Long getId() {

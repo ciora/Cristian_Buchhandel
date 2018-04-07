@@ -36,7 +36,9 @@
                         <h:outputText value="Color:" />
                         <h:outputText value="#{book.publisher}" style="font-weight: bold"/>
 
-                        <p:commandButton value="Anmelden"/>
+                        <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()" icon="ui-icon-search" title="View">
+                           <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}" />
+                        </p:commandButton>
                      </h:panelGrid>
                   </p:outputPanel>
                </h:panelGrid>
@@ -44,6 +46,22 @@
             </p:dataScroller>
          </p:layoutUnit>
       </p:layout>
+
+      <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+         <p:outputPanel id="bookDetail" style="text-align:center">
+                 <p:graphicImage name="images/book.jpg" />
+             <p:panelGrid columns="2">
+               <h:outputText value="Id: "/>
+               <h:outputText value="#{indexController.actBook.id}"/>
+
+               <h:outputText value="Titel"/>
+               <h:outputText value="#{indexController.actBook.title}"/>
+
+               <h:outputText value="Location"/>
+               <h:outputText value="#{indexController.actBook.publisher}"/>
+            </p:panelGrid>
+         </p:outputPanel>
+      </p:dialog>
    </h:form>
 
 </h:body>

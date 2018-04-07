@@ -32,6 +32,8 @@ public class IndexController implements Serializable {
 
     Book selectedBook = new Book();
 
+    Book actBook = new Book();
+
     List<String> genres = new LinkedList<String>();
     public IndexController() {
 
@@ -64,5 +66,13 @@ public class IndexController implements Serializable {
     public void onRowDblClckSelect(final SelectEvent event) {
         selectedBook = (Book) event.getObject();
         System.out.println(selectedBook.getTitle());
+    }
+
+    public Book getActBook() {
+        return actBook;
+    }
+
+    public void setActBook(Book actBook) {
+        this.actBook = actBook;
     }
 }

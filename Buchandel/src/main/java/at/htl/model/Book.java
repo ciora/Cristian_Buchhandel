@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by cristian on 14.10.2017.
@@ -28,6 +30,10 @@ public class Book implements Serializable {
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BookPurchases> bookPurchases = new LinkedList<BookPurchases>();
+
 
     @ManyToOne
     @JoinColumn(name = "publisher")

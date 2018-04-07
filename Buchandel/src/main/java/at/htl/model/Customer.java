@@ -20,6 +20,7 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Book> bookList = new LinkedList<Book>();
+
     public Customer() {
     }
 
