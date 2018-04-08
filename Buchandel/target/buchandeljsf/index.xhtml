@@ -12,54 +12,66 @@
 <h:body>
 
     <h:form id="form">
-        <h:button outcome="warenkorb.xhtml" value="Warenkorb" styleClass="ui-priority-primary"/>
+        <p:panel header="Filter the Books" style="margin-bottom:10px;">
+            <h:panelGrid columns="10" cellpadding="5">
+                <p:outputLabel for="country" value="Genre: "/>
+                <p:selectOneMenu id="country" value="#{indexController.genre}" style="width:150px">
+                    <p:ajax listener="#{indexController.onGenreChanged}" update=":form"/>
+                    <f:selectItem itemLabel="Select a Genre" itemValue="" noSelectionOption="true"/>
+                    <f:selectItems value="#{indexController.genres}"/>
+                </p:selectOneMenu>
 
-        <p:layout>
-            <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
-                West
-            </p:layoutUnit>
+                <h:outputLabel for="Title" value="Book title:"/>
+                <h:inputText id="Title" value="#{indexController.titleToFilter}">
+                    <p:ajax event="keyup" listener="#{indexController.filterBooksByTitle}" update=":form"/>
+                </h:inputText>
+            </h:panelGrid>
+            <p:separator/>
+            <p:button outcome="warenkorb.xhtml" value="Warenkorb" styleClass="ui-priority-primary"/>
+        </p:panel>
+            <p:dataScroller value="#{indexController.filteredBookList}" var="book" chunkSize="10">
+                <f:facet name="header">
+                    Scroll Down to Load More Books
+                </f:facet>
+                <h:panelGrid columns="2" columnClasses="logo,detail">
+                    <p:graphicImage name="images/book.jpg"/>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Id:"/>
+                            <h:outputText value="#{book.id}" style="font-weight: bold"/>
 
-            <p:layoutUnit position="center">
-                <p:dataScroller value="#{indexController.books}" var="book" chunkSize="10">
-                    <f:facet name="header">
-                        Scroll Down to Load More Cars
-                    </f:facet>
-                    <h:panelGrid columns="2" columnClasses="logo,detail">
-                        <p:graphicImage name="images/book.jpg"/>
+                            <h:outputText value="Id:"/>
+                            <h:outputText value="#{book.genre}" style="font-weight: bold"/>
 
-                        <p:outputPanel>
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputText value="Title:"/>
-                                <h:outputText value="#{book.title}" style="font-weight: bold"/>
+                            <h:outputText value="Title:"/>
+                            <h:outputText value="#{book.title}" style="font-weight: bold"/>
 
-                                <h:outputText value="ISBN:"/>
-                                <h:outputText value="#{book.ISBN}" style="font-weight: bold"/>
+                            <h:outputText value="ISBN:"/>
+                            <h:outputText value="#{book.ISBN}" style="font-weight: bold"/>
 
-                                <h:outputText value="Pages:"/>
-                                <h:outputText value="#{book.pages}" style="font-weight: bold"/>
+                            <h:outputText value="Pages:"/>
+                            <h:outputText value="#{book.pages}" style="font-weight: bold"/>
 
-                                <h:outputText value="Publisher:"/>
-                                <h:outputText value="#{book.publisher.publisherName}" style="font-weight: bold"/>
+                            <h:outputText value="Publisher:"/>
+                            <h:outputText value="#{book.publisher.publisherName}" style="font-weight: bold"/>
 
-                                <h:outputText value="Language:" />
-                                <h:outputText value="#{book.language}" style="font-weight: bold"/>
+                            <h:outputText value="Language:"/>
+                            <h:outputText value="#{book.language}" style="font-weight: bold"/>
 
 
-                                <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()"
-                                                 icon="ui-icon-search" title="View">
-                                    <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
-                                </p:commandButton>
-                                <p:commandButton value="Hinzufügen zum Warenkorb" styleClass="ui-priority-primary"
-                                                 actionListener="#{indexController.addBookToWarenKorb(book)}">
-                                    <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
-                                </p:commandButton>
-                            </h:panelGrid>
-                        </p:outputPanel>
-                    </h:panelGrid>
-                    <p:separator/>
-                </p:dataScroller>
-            </p:layoutUnit>
-        </p:layout>
+                            <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()"
+                                             icon="ui-icon-search" title="View">
+                                <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
+                            </p:commandButton>
+                            <p:commandButton value="Hinzufügen zum Warenkorb" styleClass="ui-priority-primary"
+                                             actionListener="#{indexController.addBookToWarenKorb(book)}">
+                                <f:setPropertyActionListener value="#{book}" target="#{indexController.actBook}"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+                <p:separator/>
+            </p:dataScroller>
 
         <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade"
                   resizable="false">
@@ -78,13 +90,13 @@
                     <h:outputText value="Publisher:"/>
                     <h:outputText value="#{indexController.actBook.publisher.publisherName}" style="font-weight: bold"/>
 
-                    <h:outputText value="Language:" />
+                    <h:outputText value="Language:"/>
                     <h:outputText value="#{indexController.actBook.language}" style="font-weight: bold"/>
 
-                    <h:outputText value="Summary:" />
+                    <h:outputText value="Genre:"/>
                     <h:outputText value="#{indexController.actBook.genre}" style="font-weight: bold"/>
 
-                    <h:outputText value="Summary:" />
+                    <h:outputText value="Summary:"/>
                     <h:outputText value="#{indexController.actBook.summary}" style="font-weight: bold"/>
                 </p:panelGrid>
             </p:outputPanel>

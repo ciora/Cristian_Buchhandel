@@ -7,63 +7,119 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-   <title>My Project</title>
+    <title>My Project</title>
 </h:head>
 <h:body>
-   <h1 class="ui-widget">Hello World!</h1>
+    <h1 class="ui-widget">Hello World!</h1>
 
-   <h:form id="form">
-      <h:button outcome="index.xhtml" value="Home" styleClass="ui-priority-primary"/>
-      <p:dataScroller value="#{indexController.warenKorbObjectList}" var="warenKorbItem" chunkSize="10">
-         <f:facet name="header">
-            Scroll Down to Load More Cars
-         </f:facet>
-         <h:panelGrid columns="2" columnClasses="logo,detail">
-            <p:graphicImage name="images/book.jpg" />
+    <h:form id="form">
+        <p:button outcome="index.xhtml" value="Home" styleClass="ui-priority-primary"/>
 
-            <p:outputPanel>
-               <h:panelGrid columns="2" cellpadding="5">
-                  <h:outputText value="Id:" />
-                  <h:outputText value="#{warenKorbItem.book.id}" style="font-weight: bold"/>
+        <p:commandButton update=":form:purchaseWindow" oncomplete="PF('purchaseDialog').show()" value="Purchase"
+                         title="Purchase Book">
+            <f:setPropertyActionListener value="#{warenKorbItem.book}" target="#{indexController.actBook}"/>
+        </p:commandButton>
 
-                  <h:outputText value="Year:" />
-                  <h:outputText value="#{warenKorbItem.book.title}" style="font-weight: bold"/>
-                  <h:outputText value="Color:" />
-                  <h:outputText value="#{warenKorbItem.book.publisher.publisherName}" style="font-weight: bold"/>
+        <p:dataScroller value="#{indexController.warenKorbObjectList}" var="warenKorbItem" chunkSize="10">
+            <f:facet name="header">
+                Scroll Down to Load More Cars
+            </f:facet>
+            <h:panelGrid columns="2" columnClasses="logo,detail">
+                <p:graphicImage name="images/book.jpg"/>
 
-                  <h:outputText value="Amount:" />
-                  <h:outputText value="#{warenKorbItem.amount}" style="font-weight: bold"/>
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Id:"/>
+                        <h:outputText value="#{warenKorbItem.book.id}" style="font-weight: bold"/>
 
-               </h:panelGrid>
+                        <h:outputText value="Year:"/>
+                        <h:outputText value="#{warenKorbItem.book.title}" style="font-weight: bold"/>
+                        <h:outputText value="Color:"/>
+                        <h:outputText value="#{warenKorbItem.book.publisher.publisherName}" style="font-weight: bold"/>
+
+                        <h:outputText value="Amount:"/>
+                        <h:outputText value="#{warenKorbItem.amount}" style="font-weight: bold"/>
+
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+            <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()" icon="ui-icon-search"
+                             title="View">
+                <f:setPropertyActionListener value="#{warenKorbItem.book}" target="#{indexController.actBook}"/>
+            </p:commandButton>
+            <p:commandButton update=":form" value="-" styleClass="ui-priority-primary"
+                             actionListener="#{indexController.updateWarenKorbBookAmount(warenKorbItem,'minus')}">
+            </p:commandButton>
+
+            <p:commandButton update=":form" value="+" styleClass="ui-priority-primary"
+                             actionListener="#{indexController.updateWarenKorbBookAmount(warenKorbItem,'plus')}">
+            </p:commandButton>
+
+            <p:commandButton update=":form" value="Remove" styleClass="ui-priority-primary"
+                             actionListener="#{indexController.deleteWarenKorbItem(warenKorbItem)}">
+            </p:commandButton>
+            <p:separator/>
+        </p:dataScroller>
+
+        <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade"
+                  resizable="false">
+            <p:outputPanel id="bookDetail" style="text-align:center">
+                <p:graphicImage name="images/book.jpg"/>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Title:"/>
+                    <h:outputText value="#{indexController.actBook.title}" style="font-weight: bold"/>
+
+                    <h:outputText value="ISBN:"/>
+                    <h:outputText value="#{indexController.actBook.ISBN}" style="font-weight: bold"/>
+
+                    <h:outputText value="Pages:"/>
+                    <h:outputText value="#{indexController.actBook.pages}" style="font-weight: bold"/>
+
+                    <h:outputText value="Publisher:"/>
+                    <h:outputText value="#{indexController.actBook.publisher.publisherName}" style="font-weight: bold"/>
+
+                    <h:outputText value="Language:"/>
+                    <h:outputText value="#{indexController.actBook.language}" style="font-weight: bold"/>
+
+                    <h:outputText value="Genre:"/>
+                    <h:outputText value="#{indexController.actBook.genre}" style="font-weight: bold"/>
+
+                    <h:outputText value="Summary:"/>
+                    <h:outputText value="#{indexController.actBook.summary}" style="font-weight: bold"/>
+                </p:panelGrid>
             </p:outputPanel>
-         </h:panelGrid>
-         <p:commandButton update=":form:bookDetail" oncomplete="PF('bookDialog').show()" icon="ui-icon-search" title="View">
-            <f:setPropertyActionListener value="#{warenKorbItem.book}" target="#{indexController.actBook}" />
-         </p:commandButton>
-         <p:commandButton update=":form" value="-" styleClass="ui-priority-primary" actionListener="#{indexController.updateWarenKorbBookAmount(warenKorbItem,'minus')}">
-         </p:commandButton>
+        </p:dialog>
 
-         <p:commandButton update=":form" value="+" styleClass="ui-priority-primary" actionListener="#{indexController.updateWarenKorbBookAmount(warenKorbItem,'plus')}">
-         </p:commandButton>
 
-         <p:commandButton update=":form" value="Remove" styleClass="ui-priority-primary" actionListener="#{indexController.deleteWarenKorbItem(warenKorbItem)}">
-         </p:commandButton>
-         <p:separator />
-      </p:dataScroller>
+        <p:dialog header="Details" widgetVar="purchaseDialog" modal="true" showEffect="fade" hideEffect="fade"
+                  resizable="false">
+            <p:outputPanel id="purchaseWindow" style="text-align:center">
+                <p:graphicImage name="images/book.jpg"/>
+                <h:panelGrid columns="2" columnClasses="logo,detail">
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="street" value="Streetname:"/>
+                            <h:inputText id="street" value="#{indexController.deliveriy.street}"/>
 
-      <p:dialog header="Details" widgetVar="bookDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-         <p:outputPanel id="bookDetail" style="text-align:center">
-            <p:graphicImage name="images/book.jpg" />
-            <p:panelGrid columns="2">
-               <h:outputText value="Titel"/>
-               <h:outputText value="#{indexController.actBook.title}"/>
+                            <h:outputLabel for="postalCode" value="Postal code:"/>
+                            <h:inputText id="postalCode" value="#{indexController.deliveriy.postalCode}"/>
 
-               <h:outputText value="Location"/>
-               <h:outputText value="#{indexController.actBook.publisher.publisherName}"/>
-            </p:panelGrid>
-         </p:outputPanel>
-      </p:dialog>
-   </h:form>
+                            <h:outputLabel for="city" value="City:"/>
+                            <h:inputText id="city" value="#{indexController.deliveriy.city}"/>
+
+                            <h:outputLabel for="houseNr" value="House number:"/>
+                            <h:inputText id="houseNr" value="#{indexController.deliveriy.houseNr}"/>
+
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:outputPanel>
+            <div align="center">
+                <p:commandButton value="Comfirm" update=":form" actionListener="#{indexController.addNewDelivery}"/>
+
+            </div>
+        </p:dialog>
+    </h:form>
 
 </h:body>
 </html>
