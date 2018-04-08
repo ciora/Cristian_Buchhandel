@@ -37,12 +37,6 @@
                     <p:graphicImage name="images/book.jpg"/>
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="Id:"/>
-                            <h:outputText value="#{book.id}" style="font-weight: bold"/>
-
-                            <h:outputText value="Id:"/>
-                            <h:outputText value="#{book.genre}" style="font-weight: bold"/>
-
                             <h:outputText value="Title:"/>
                             <h:outputText value="#{book.title}" style="font-weight: bold"/>
 
@@ -80,6 +74,10 @@
                 <p:panelGrid columns="2">
                     <h:outputText value="Title:"/>
                     <h:outputText value="#{indexController.actBook.title}" style="font-weight: bold"/>
+
+                    <h:outputText value="Autor:"/>
+                    <h:outputText value="#{indexController.actBook.autor}" style="font-weight: bold"/>
+
 
                     <h:outputText value="ISBN:"/>
                     <h:outputText value="#{indexController.actBook.ISBN}" style="font-weight: bold"/>

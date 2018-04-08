@@ -10,8 +10,6 @@
     <title>My Project</title>
 </h:head>
 <h:body>
-    <h1 class="ui-widget">Hello World!</h1>
-
     <h:form id="form">
         <p:button outcome="index.xhtml" value="Home" styleClass="ui-priority-primary"/>
 
@@ -22,24 +20,30 @@
 
         <p:dataScroller value="#{indexController.warenKorbObjectList}" var="warenKorbItem" chunkSize="10">
             <f:facet name="header">
-                Scroll Down to Load More Cars
+                Scroll Down to Load More Books
             </f:facet>
             <h:panelGrid columns="2" columnClasses="logo,detail">
                 <p:graphicImage name="images/book.jpg"/>
 
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Id:"/>
-                        <h:outputText value="#{warenKorbItem.book.id}" style="font-weight: bold"/>
-
-                        <h:outputText value="Year:"/>
+                        <h:outputText value="Title:"/>
                         <h:outputText value="#{warenKorbItem.book.title}" style="font-weight: bold"/>
-                        <h:outputText value="Color:"/>
+
+                        <h:outputText value="ISBN:"/>
+                        <h:outputText value="#{warenKorbItem.book.ISBN}" style="font-weight: bold"/>
+
+                        <h:outputText value="Pages:"/>
+                        <h:outputText value="#{warenKorbItem.book.pages}" style="font-weight: bold"/>
+
+                        <h:outputText value="Publisher:"/>
                         <h:outputText value="#{warenKorbItem.book.publisher.publisherName}" style="font-weight: bold"/>
+
+                        <h:outputText value="Language:"/>
+                        <h:outputText value="#{warenKorbItem.book.language}" style="font-weight: bold"/>
 
                         <h:outputText value="Amount:"/>
                         <h:outputText value="#{warenKorbItem.amount}" style="font-weight: bold"/>
-
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
@@ -68,6 +72,9 @@
                 <p:panelGrid columns="2">
                     <h:outputText value="Title:"/>
                     <h:outputText value="#{indexController.actBook.title}" style="font-weight: bold"/>
+
+                    <h:outputText value="Autor:"/>
+                    <h:outputText value="#{indexController.actBook.autor}" style="font-weight: bold"/>
 
                     <h:outputText value="ISBN:"/>
                     <h:outputText value="#{indexController.actBook.ISBN}" style="font-weight: bold"/>
