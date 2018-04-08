@@ -20,15 +20,19 @@ public class Book implements Serializable {
     private Long id;
     private String title;
     @NotNull
-    @Size(min=6,max = 10)
+    @Size(min=6,max = 10, message = "Bitte eine ISBN eingeben welche zwischen 6 oder 10 Zeichen hat")
     private String ISBN;
     @NotNull
     @Size(min=0,max=255)
     private String autor;
+    @NotNull
     private double price;
+    @NotNull
     private int pages;
+    @NotNull
     private String language;
     private String summary;
+    @NotNull
     private String genre;
     @ManyToOne
     @JoinColumn(name = "customer")
@@ -37,7 +41,7 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookPurchases> bookPurchases = new LinkedList<BookPurchases>();
 
-
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher")
     private Publisher publisher;
