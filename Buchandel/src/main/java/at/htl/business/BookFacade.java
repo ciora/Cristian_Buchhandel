@@ -14,7 +14,7 @@ import java.util.List;
 @Stateless
 public class BookFacade {
     @PersistenceContext
-    EntityManager em;
+    public EntityManager em;
 
     public void create(Book book){
         if(book.getId() != null && em.find(Book.class, book.getId())!= null){

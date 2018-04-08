@@ -20,7 +20,7 @@ public class Book implements Serializable {
     private Long id;
     private String title;
     @NotNull
-    @Size(min=6,max = 6)
+    @Size(min=6,max = 10)
     private String ISBN;
     @NotNull
     @Size(min=0,max=255)
@@ -38,7 +38,7 @@ public class Book implements Serializable {
     private List<BookPurchases> bookPurchases = new LinkedList<BookPurchases>();
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher")
     private Publisher publisher;
 
