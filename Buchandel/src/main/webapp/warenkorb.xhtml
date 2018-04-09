@@ -11,6 +11,8 @@
 </h:head>
 <h:body>
     <h:form id="form">
+        <p:growl id="growl"/>
+
         <p:button outcome="index.xhtml" value="Home" styleClass="ui-priority-primary"/>
 
         <p:commandButton update=":form:purchaseWindow" oncomplete="PF('purchaseDialog').show()" value="Purchase"

@@ -1,14 +1,16 @@
 package at.htl.web;
 
 import at.htl.business.*;
-import at.htl.model.*;
+import at.htl.model.Book;
+import at.htl.model.BookPurchases;
+import at.htl.model.Customer;
+import at.htl.model.OpenDeliveries;
 import org.primefaces.event.SelectEvent;
-import sun.awt.image.ImageWatched;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Model;
-import javax.faces.view.ViewScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -247,6 +249,7 @@ public class IndexController implements Serializable {
     }
 
     public void addNewDelivery(){
+        int bookAmount=0;
         List<Customer> customers = customerFacade.getCustomers();
         for (WarenKorbObject warenKorbItem: warenKorbObjectList
              ) {
@@ -260,6 +263,14 @@ public class IndexController implements Serializable {
                 java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                 bookPurchasesFacade.create(new BookPurchases(warenKorbItem.getBook(),customers.get(0),date));
             }
+            bookAmount = bookAmount + warenKorbItem.getAmount();
+        }
+        FacesContext context = FacesContext.getCurrentInstance();
+        if(bookAmount <= 1){
+            context.addMessage(null, new FacesMessage("Es wurde " +bookAmount + " Buch gekauft."));
+
+        }else{
+            context.addMessage(null, new FacesMessage("Es wurden " +bookAmount + " Bücher gekauft."));
         }
         warenKorbObjectList.clear();
     }
