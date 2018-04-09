@@ -236,11 +236,11 @@ public class IndexController implements Serializable {
             for (Book book:books
                     ) {
                 if(genre != null){
-                    if(book.getTitle().contains(titleToFilter) && book.getGenre().equals(genre)){
+                    if(book.getTitle().toUpperCase().contains(titleToFilter.toUpperCase()) && book.getGenre().equals(genre)){
                         filteredBookList.add(book);
                     }
                 }else {
-                    if(book.getTitle().contains(titleToFilter)){
+                    if(book.getTitle().toUpperCase().contains(titleToFilter.toUpperCase())){
                         filteredBookList.add(book);
                     }
                 }
