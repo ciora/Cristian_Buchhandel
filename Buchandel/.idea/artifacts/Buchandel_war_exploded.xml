@@ -7,6 +7,7 @@
           <element id="module-output" name="Buchandel" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.derby:derbyclient:10.13.1.1" />
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
           <element id="library" level="project" name="Maven: org.primefaces.extensions:all-themes:1.0.8" />
           <element id="library" level="project" name="Maven: org.primefaces.themes:afterdark:1.0.8" />
@@ -45,6 +46,9 @@
           <element id="library" level="project" name="Maven: org.primefaces.themes:ui-lightness:1.0.8" />
           <element id="library" level="project" name="Maven: org.primefaces.themes:vader:1.0.8" />
           <element id="library" level="project" name="Maven: org.primefaces.themes:home:1.0.8" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.0.Final" />
+          <element id="library" level="project" name="Maven: org.glassfish.web:el-impl:2.2" />
+          <element id="library" level="project" name="Maven: javax.el:el-api:2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
